@@ -6,6 +6,7 @@ class CategoryViewSet(ModelViewSet):
     serializer_class=CategorySerializer
     queryset = Category.objects.all()
 
+
 class TaskViewSet(ModelViewSet):
     serializer_class = TaskSerializer
     queryset = Task.objects.all()
