@@ -2,6 +2,25 @@ from rest_framework import serializers
 from django.utils import timezone
 from .models import Category,Task
 
+
+class RegisterSerializer(serializers.Serializer):
+    username = serializers.CharField(required=True)
+    password = serializers.CharField(required=True)
+    password2 = serializers.CharField(required=True)
+    
+    def validate(self, attrs):
+        if attrs['password'] != attrs['password2']:
+            raise serializers.ValidationError({'password2': 'password turi emas'})
+        return super().validate(attrs)
+    
+
+class LoginSerializer(serializers.Serializer):
+    username = serializers.CharField(required=True)
+    password = serializers.CharField(required=True)
+
+
+
+
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
